@@ -20,13 +20,15 @@ export default function ContListView() {
       .then((data) => setDetails(data));
   }
 
-  getMainDetails();
+  React.useEffect(() => {
+    getMainDetails();
+  }, []);
 
   return (
     <div className="contributers-list-view">
       <Grid container className="main-details">
         <Grid xs={12} lg={3} item>
-          { details ? <MainDetails name={details.name} img={details.avatar_url} repos={details.public_repos} /> : null}
+          {details ? <MainDetails name={details.name} img={details.avatar_url} repos={details.public_repos} /> : null}
         </Grid>
 
         <Grid xs={12} lg={9} item>

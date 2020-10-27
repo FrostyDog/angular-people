@@ -23,31 +23,24 @@ export default function ContList(props) {
         <Grid xs={12} sm={10} lg={9} spacing={2} justify="center" container item>
           <Grid item xs={3} className="criteria-wrapper">
             <Typography>Contributions</Typography>
-            <Typography variant="h6">13</Typography>
+            <Typography variant="h6">{props.contributions}</Typography>
           </Grid>
 
           <Grid item xs={3} className="criteria-wrapper">
             <Typography>Followers</Typography>
-            <Typography variant="h6">13</Typography>
+            <Typography variant="h6">{props.followers}</Typography>
           </Grid>
 
           <Grid item xs={3} className="criteria-wrapper">
             <Typography>Public Repos</Typography>
-            <Typography variant="h6">13</Typography>
+            <Typography variant="h6">{props.repos}</Typography>
           </Grid>
 
           <Grid item xs={3} className="criteria-wrapper">
             <Typography>Gists</Typography>
-            <Typography variant="h6">13</Typography>
+            <Typography variant="h6">{props.gists}</Typography>
           </Grid>
         </Grid>
-
-        {/* <Grid xs={8} container item justify="space-around">
-          <Typography variant="h6"> {props.contributions}</Typography>
-          <Typography variant="h6">{props.followers}</Typography>
-          <Typography variant="h6">{props.repos}</Typography>
-          <Typography variant="h6">{props.gists}</Typography>
-        </Grid> */}
       </Grid>
     </div>
   );
