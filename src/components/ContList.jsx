@@ -52,9 +52,15 @@ export default function ContList() {
     getRepoes(1);
   }, []);
 
+  //   Get unique values
+
   React.useEffect(() => {
-    setUnique(Array.from(new Set(contributors)));
-    // console.log(contributors);
+    contributors.forEach((el) => {
+      let i = unique.findIndex((x) => x.login == el.login);
+      if (i <= -1) {
+        setUnique((unique) => [...unique, el]);
+      }
+    });
   }, [contributors]);
 
   React.useEffect(() => {
@@ -64,8 +70,8 @@ export default function ContList() {
   return (
     <div className="contList">
       {unique.map((el) => (
-        <LazyLoad  placeholder={<Loading />}>
-          <ContListItem  name={el.login} img={el.avatar_url} />
+        <LazyLoad key={el.id} placeholder={<Loading />}>
+          <ContListItem key={el.id} name={el.login} img={el.avatar_url} />
         </LazyLoad>
       ))}
     </div>
