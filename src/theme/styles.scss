@@ -12,19 +12,36 @@ $white: #fff;
   align-items: center;
 }
 
-.contList {
-  padding: 2% 10%;
+.main-details {
+  display: flex;
+  justify-content: center;
+  h3 {
+    margin: 0.5rem 0;
+  }
 }
 
+.contributers-list-view {
+  padding: 2% 5%;
+}
+
+// .contList {
+//   padding: 2% 10%;
+// }
+
 .contributers-list-item {
-  border-bottom: 1px solid $primary;
+  border-bottom: 1.5px solid $primary;
   padding: 2% 0;
+  @media screen and (max-width: 600px){
+  &:first-of-type {
+    border-top: 1.5px solid $primary;
+    margin-top: 0.5rem;
+  }}
   p,
   h6 {
     text-align: center;
   }
 
-  .person-info-wrapper{
+  .person-info-wrapper {
     .MuiAvatar-root {
       margin: 0.5rem 0;
       width: 75px;
