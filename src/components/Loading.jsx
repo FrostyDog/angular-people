@@ -1,9 +1,10 @@
 import React from "react";
-import {Typography} from '@material-ui/core';
+import {Typography, LinearProgress} from '@material-ui/core';
 
-export default function Loading() {
+export default function Loading(props) {
   return <div className="loading">
-     <Typography variant="h6" align="center">Loading...</Typography>
+     <Typography align="center">Loading {props.subject}...</Typography>
+     <LinearProgress color="secondary" />
 
   </div>;
 }

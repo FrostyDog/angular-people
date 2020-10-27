@@ -20,7 +20,8 @@ let theme = createMuiTheme({
       main: "#fff",
     },
     secondary: {
-      main: "#24292e",
+      // main: "#24292e",
+      main: "#dd1b16",
     },
   },
 });

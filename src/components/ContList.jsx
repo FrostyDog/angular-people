@@ -7,8 +7,10 @@ import Loading from "./Loading";
 export default function ContList() {
   let [angularRepos, setAngularRepos] = React.useState([]);
   let [contributors, setContributors] = React.useState([]);
-  let [allowGetCont, setAllowGetCont] = React.useState(false);
   let [unique, setUnique] = React.useState([]);
+
+  let [allowGetCont, setAllowGetCont] = React.useState(false);
+  let [listLoading, setlistLoading] = React.useState(true);
 
   function getContributors() {
     angularRepos.forEach((el) => {
@@ -40,6 +42,7 @@ export default function ContList() {
       .then((results) => {
         if (results.length === 0) {
           console.log("finished");
+          setlistLoading(false)
           setAllowGetCont(true);
         } else {
           setAngularRepos((angularRepos) => [...angularRepos, ...results]);
@@ -69,6 +72,8 @@ export default function ContList() {
 
   return (
     <div className="contList">
+      {listLoading ? <Loading subject="List of Beautifull Angular People" /> : null}
+
       {unique.map((el) => (
         <LazyLoad key={el.id} placeholder={<Loading />}>
           <ContListItem key={el.id} name={el.login} img={el.avatar_url} />
