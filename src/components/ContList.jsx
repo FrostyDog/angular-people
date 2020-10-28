@@ -3,6 +3,7 @@ import ContListItem from "./ContListItem";
 import token from "../utility/token";
 import LazyLoad from "react-lazyload";
 import Loading from "./Loading";
+import { fetchPersonalDetails, handleContributionChange } from "../utility/functions";
 
 export default function ContList() {
   let [angularRepos, setAngularRepos] = React.useState([]);
@@ -10,7 +11,6 @@ export default function ContList() {
   let [unique, setUnique] = React.useState([]);
 
   let [allowGetCont, setAllowGetCont] = React.useState(false);
-  let [listLoading, setlistLoading] = React.useState(true);
 
   function getContributors() {
     angularRepos.forEach((el) => {
@@ -63,21 +63,31 @@ export default function ContList() {
     contributors.forEach((el) => {
       let i = unique.findIndex((x) => x.login == el.login);
       if (i <= -1) {
-        if (listLoading) {
-          setlistLoading(false);
-        }
         setUnique((unique) => [...unique, el]);
+      } else {
+        let newCopyUnique = handleContributionChange(unique, el);
+        setUnique([...newCopyUnique]);
       }
     });
   }, [contributors]);
 
+//   React.useEffect(() => {
+//     unique.forEach((el) => {
+//       (async () => {
+//         let newCopyUnique = await fetchPersonalDetails(unique, el.login);
+//         setUnique([...newCopyUnique]);
+//       })();
+      
+//     });
+//   }, [unique]);
+
   return (
     <div className="contList">
-      {listLoading ? <Loading subject="List of Beautifull Angular People" /> : null}
+      {unique.length < 1 ? <Loading subject="List of Beautifull Angular People" /> : null}
 
       {unique.map((el) => (
         <LazyLoad key={el.id} placeholder={<Loading />}>
-          <ContListItem key={el.id} name={el.login} img={el.avatar_url} />
+          <ContListItem key={el.id} name={el.login} contributions={el.contributions} img={el.avatar_url} />
         </LazyLoad>
       ))}
     </div>
