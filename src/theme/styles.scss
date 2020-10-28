@@ -28,18 +28,19 @@ $white: #fff;
   padding: 2% 5%;
 }
 
-// .contList {
-//   padding: 2% 10%;
-// }
+.contList {
+  @media screen and (max-width: 900px) {
+    border-top: 1.5px solid $primary;
+    margin-top: 0.5rem;
+  }
+}
 
 .contributers-list-item {
   border-bottom: 1.5px solid $primary;
   padding: 2% 0;
-  @media screen and (max-width: 900px){
-  &:first-of-type {
-    border-top: 1.5px solid $primary;
+  @media screen and (max-width: 900px) {
     margin-top: 0.5rem;
-  }}
+  }
   p,
   h6 {
     text-align: center;

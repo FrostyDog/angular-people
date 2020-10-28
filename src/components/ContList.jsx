@@ -37,12 +37,11 @@ export default function ContList() {
       },
     })
       .catch((err) => console.log(err))
-      // fetch(`/mock-api/angular-repos.json`)
       .then((res) => res.json())
       .then((results) => {
         if (results.length === 0) {
           console.log("finished");
-          setlistLoading(false)
+
           setAllowGetCont(true);
         } else {
           setAngularRepos((angularRepos) => [...angularRepos, ...results]);
@@ -55,20 +54,22 @@ export default function ContList() {
     getRepoes(1);
   }, []);
 
-  //   Get unique values
+  React.useEffect(() => {
+    getContributors();
+  }, [allowGetCont]);
 
+  //   Get unique values
   React.useEffect(() => {
     contributors.forEach((el) => {
       let i = unique.findIndex((x) => x.login == el.login);
       if (i <= -1) {
+        if (listLoading) {
+          setlistLoading(false);
+        }
         setUnique((unique) => [...unique, el]);
       }
     });
   }, [contributors]);
-
-  React.useEffect(() => {
-    getContributors();
-  }, [allowGetCont]);
 
   return (
     <div className="contList">
