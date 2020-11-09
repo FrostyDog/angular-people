@@ -1,38 +1,24 @@
 import React from "react";
 import ContListItem from "./ContListItem";
-import token from "../utility/token";
 import LazyLoad from "react-lazyload";
 import Loading from "./Loading";
-import {
-  getJSON
-} from "../utility/functions";
+import {fetchAllPages } from "../utility/functions";
 
 export default function ContList() {
-  let [angularMembers, setangularMembers] = React.useState([]);
+  let [angularMembers, setAngularMembers] = React.useState([]);
 
 
-function FetchAllPages(url) {
-  let currentPage = 1
-  for( currentPage !== 0, currentPage += 1) {
-  if(getJSON(`${url}?page=${currentPage}`).length > 0 {
 
-  currentPage + 1
-} else {currentPage = 0}
-  }
-}
+  React.useEffect(() => {
+    fetchAllPages("https://api.github.com/orgs/angular/members").then(res => setAngularMembers([...res]))
+  },[angularMembers]);
 
-React.useEffect(() => {
-  getJSON()
-
-})
 
   return (
     <div className="contList">
-      {unique.length < 1 ? (
-        <Loading subject="List of Beautifull Angular People" />
-      ) : null}
+      {angularMembers.length < 1 ? <Loading subject="List of Beautifull Angular People" /> : null}
 
-      {unique.map((el) => (
+      {angularMembers.map((el) => (
         <LazyLoad key={el.id} placeholder={<Loading />}>
           <ContListItem
             key={el.id}
