@@ -6,11 +6,10 @@ import ContListView from "./screens/ContListView";
 import "./theme/styles.scss";
 
 function App() {
-
   return (
     <div className="App">
       <Router>
-        <UpperNav/>
+        <UpperNav />
         <Switch>
           <Route exact path="/" render={() => <ContListView />} />
         </Switch>
