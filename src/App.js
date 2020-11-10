@@ -9,7 +9,7 @@ import "./theme/styles.scss";
 
 function App() {
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
     <div className="App">
       <Router>
         <UpperNav />
@@ -18,7 +18,7 @@ function App() {
         </Switch>
       </Router>
     </div>
-    // </Provider>
+    </Provider>
   );
 }
 

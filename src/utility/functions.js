@@ -15,11 +15,10 @@ export async function fetchAllPages(url, startPage = 1) {
 
   while (morePagesAvailable) {
     const response = await getJSON(`${url}?page=${currentPage}`);
-    let data = await response
+    let data = await response;
     result = [...result, ...data];
     currentPage++;
     morePagesAvailable = data.length > 0;
   }
   return result;
 }
-

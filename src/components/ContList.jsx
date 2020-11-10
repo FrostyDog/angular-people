@@ -2,17 +2,18 @@ import React from "react";
 import ContListItem from "./ContListItem";
 import LazyLoad from "react-lazyload";
 import Loading from "./Loading";
-import {fetchAllPages } from "../utility/functions";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAllPages } from "../utility/functions";
 
 export default function ContList() {
-  let [angularMembers, setAngularMembers] = React.useState([]);
-
-
+  let angularMembers = useSelector((state) => state.angularMembers);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    fetchAllPages("https://api.github.com/orgs/angular/members").then(res => setAngularMembers([...res]))
-  },[]);
-
+    fetchAllPages("https://api.github.com/orgs/angular/members").then((res) =>
+    dispatch({ type: "addPeople", payload: res })
+    );
+  }, []);
 
   return (
     <div className="contList">
