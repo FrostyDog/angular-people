@@ -11,7 +11,7 @@ export default function ContList() {
 
   React.useEffect(() => {
     fetchAllPages("https://api.github.com/orgs/angular/members").then(res => setAngularMembers([...res]))
-  },[angularMembers]);
+  },[]);
 
 
   return (
