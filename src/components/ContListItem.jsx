@@ -22,8 +22,8 @@ export default function ContList(props) {
 
         <Grid xs={12} sm={10} lg={9} spacing={2} justify="center" container item>
           <Grid item xs={3} className="criteria-wrapper">
-            <Typography>Contributions</Typography>
-            <Typography variant="h6">{props.contributions}</Typography>
+            <Typography>Company</Typography>
+            <Typography variant="h6">{props.company ? props.company : "unknown"}</Typography>
           </Grid>
 
           <Grid item xs={3} className="criteria-wrapper">
@@ -33,7 +33,7 @@ export default function ContList(props) {
 
           <Grid item xs={3} className="criteria-wrapper">
             <Typography>Public Repos</Typography>
-            <Typography variant="h6">{props.repos}</Typography>
+            <Typography variant="h6">{props.publicRepos}</Typography>
           </Grid>
 
           <Grid item xs={3} className="criteria-wrapper">

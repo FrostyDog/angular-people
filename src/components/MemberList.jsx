@@ -3,14 +3,14 @@ import ContListItem from "./ContListItem";
 import LazyLoad from "react-lazyload";
 import Loading from "./Loading";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllPages } from "../utility/functions";
+import { getOrgMambers } from "../utility/functions";
 
 export default function ContList() {
   let angularMembers = useSelector((state) => state.angularMembers);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    fetchAllPages("https://api.github.com/orgs/angular/members").then((res) =>
+    getOrgMambers("https://api.github.com/orgs/angular/members").then((res) =>
     dispatch({ type: "addPeople", payload: res })
     );
   }, []);
@@ -24,8 +24,12 @@ export default function ContList() {
           <ContListItem
             key={el.id}
             name={el.login}
-            contributions={el.contributions}
+            company={el.company}
             img={el.avatar_url}
+            company={el.company}
+            followers={el.followers}
+            publicRepos={el.publicRepos}
+            gists={el.gists}
           />
         </LazyLoad>
       ))}

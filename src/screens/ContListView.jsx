@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import ContList from "../components/ContList";
+import MemberList from "../components/MemberList";
 import MainDetails from "../components/MainDetails";
 import "../theme/styles.scss";
 
@@ -32,7 +32,7 @@ export default function ContListView() {
         </Grid>
 
         <Grid xs={12} lg={9} item>
-          <ContList />
+          <MemberList />
         </Grid>
       </Grid>
     </div>
