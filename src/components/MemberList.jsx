@@ -1,5 +1,5 @@
 import React from "react";
-import ContListItem from "./ContListItem";
+import MemberListItem from "./MemberListItem";
 import LazyLoad from "react-lazyload";
 import Loading from "./Loading";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,15 +21,8 @@ export default function ContList() {
 
       {angularMembers.map((el) => (
         <LazyLoad key={el.id} placeholder={<Loading />}>
-          <ContListItem
-            key={el.id}
-            name={el.login}
-            company={el.company}
-            img={el.avatar_url}
-            company={el.company}
-            followers={el.followers}
-            publicRepos={el.publicRepos}
-            gists={el.gists}
+          <MemberListItem
+            member={el}
           />
         </LazyLoad>
       ))}
