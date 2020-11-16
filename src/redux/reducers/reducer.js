@@ -9,6 +9,10 @@ export const membersReducer = function (state = initialState, action) {
       return Object.assign({}, state, {
         angularMembers: [...state.angularMembers, ...action.payload],
       });
+      case "sortPeople":
+      return Object.assign({}, state, {
+        angularMembers: [...action.payload],
+      });
     default:
       return state;
   }

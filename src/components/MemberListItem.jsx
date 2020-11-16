@@ -23,8 +23,8 @@ export default function ContList(props) {
 
         <Grid xs={12} sm={10} lg={9} spacing={2} justify="center" container item>
           <Grid item xs={3} className="criteria-wrapper">
-            <Typography>Company</Typography>
-            <Typography variant="h6">{props.member.company ? props.member.company : "unknown"}</Typography>
+            <Typography>Following</Typography>
+            <Typography variant="h6">{props.member.following}</Typography>
           </Grid>
 
           <Grid item xs={3} className="criteria-wrapper">
