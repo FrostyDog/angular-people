@@ -2,7 +2,8 @@
 
 # Angular People
 
-Angular People is a sample of the code written by me in React/Redux.
+Angular People is a small web-application written by me in React/Redux.
+Perfect example of fetching data in a clean-code manner.
 It is also utilizes lazy load and React Hooks.
 
 ## Deployed version
