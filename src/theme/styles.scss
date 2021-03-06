@@ -58,3 +58,12 @@ $white: #fff;
     min-width: fit-content;
   }
 }
+
+.select-component {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+  .sorting-select {
+    min-width: 200px;
+  }
+}

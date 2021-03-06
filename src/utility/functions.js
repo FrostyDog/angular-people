@@ -1,32 +1,54 @@
 import token from "./token";
 
-export let handleContributionChange = (list, addingItem) => {
-  console.log(list);
-  let listCopy = list;
-  return listCopy.map((item) => {
-    const obj = Object.assign({}, item);
-    if (item.login === addingItem.login) {
-      obj["contributions"] = item.contributions + addingItem.contributions;
-    }
-    return obj;
-  });
-};
+export function getJSON(url) {
+  return fetch(url, {
+    headers: {
+      Authorization: `token ${token}`,
+    },
+  }).then((res) => res.json());
+}
 
-export let fetchPersonalDetails = async (list, login) => {
-  let listCopy = list;
-  return listCopy.map((item) => {
-    const obj = Object.assign({}, item);
-    fetch(`https://api.github.com/users/${login}`, {
-      headers: {
-        Authorization: `token ${token}`,
-      },
+export async function fetchAllPages(url, startPage = 1) {
+  let result = [];
+  let currentPage = startPage;
+  let morePagesAvailable = true;
+
+  while (morePagesAvailable) {
+    const response = await getJSON(`${url}?page=${currentPage}`);
+    let data = await response;
+    result = [...result, ...data];
+    currentPage++;
+    morePagesAvailable = data.length > 0;
+  }
+
+  return result;
+}
+
+async function addNewMembersData(arrayForNewData) {
+  let result = await Promise.all(
+    arrayForNewData.map(async (el) => {
+      let newElement = await fetchPersonalData(el);
+      return await newElement;
     })
-      .then((res) => res.json())
-      .then((result) => {
-        obj["followers"] = result.followers;
-        obj["gists"] = result.public_gists;
-        obj["repos"] = result.public_repos;
-        return obj;
-      });
+  );
+
+  return result;
+}
+
+async function fetchPersonalData(person) {
+  let response = await getJSON(`https://api.github.com/users/${person.login}`);
+  let additionalData = await response;
+  return Object.assign({}, person, {
+    following: additionalData.following,
+    followers: additionalData.followers,
+    publicRepos: additionalData.public_repos,
+    gists: additionalData.public_gists,
   });
-};
+}
+
+export async function getOrgMambers(url) {
+  let result = await fetchAllPages(url);
+  result = await addNewMembersData(result);
+
+  return result;
+}
