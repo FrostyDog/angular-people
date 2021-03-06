@@ -1,4 +1,4 @@
-const token = process.env.NEXT_PUBLIC_GH_TOKEN;
+const token = process.env.VERCEL;
 
-console.log(token);
+console.log(process.env);
 export default token;
