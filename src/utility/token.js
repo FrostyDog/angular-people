@@ -1,4 +1,4 @@
-const token = process.env.NEXT_PUBLIC_GH_TOKEN;
+const token = process.env.NEXT_PUBLIC_TEST;
 
 console.log(token);
 export default token;
